@@ -12,6 +12,8 @@ from abc import abstractmethod
 
 import numpy as np
 
+from pyfme.utils.quaternions import euler2quatern, quatern2euler
+
 
 class Attitude:
     """Attitude
@@ -33,7 +35,7 @@ class Attitude:
     """
 
     def __init__(self):
-        # Euler angles (psi, theta, phi)
+        # Euler angles (theta, phi, psi)
         self._euler_angles = np.zeros(3)  # rad
         # Quaternions (q0, q1, q2, q3)
         self._quaternions = np.zeros(4)
@@ -93,8 +95,7 @@ class EulerAttitude(Attitude):
 
     def update(self, value):
         self._euler_angles[:] = value
-        # TODO: transform quaternions to Euler angles
-        self._quaternions = np.zeros(4)
+        self._quaternions = euler2quatern(value)
 
     def __repr__(self):
         rv = (f"theta: {self.theta:.3f} rad, phi: {self.phi:.3f} rad, "
@@ -110,5 +111,4 @@ class QuaternionAttitude(Attitude):
 
     def update(self, value):
         self._quaternions[:] = value
-        # TODO: transform quaternions to Euler angles
-        self._euler_angles = np.zeros(3)
+        self._euler_angles = quatern2euler(value)
