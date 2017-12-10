@@ -39,6 +39,7 @@ class Simulation:
         during the simulation.
     """
 
+
     _default_save_vars = {
         'time': 'system.time',
         # environment
@@ -77,6 +78,11 @@ class Simulation:
         'theta': 'system.full_state.attitude.theta',
         'phi': 'system.full_state.attitude.phi',
 
+        'q0': 'system.full_state.attitude.q0',
+        'q1': 'system.full_state.attitude.q1',
+        'q2': 'system.full_state.attitude.q2',
+        'q3': 'system.full_state.attitude.q3',
+
         'u': 'system.full_state.velocity.u',
         'v': 'system.full_state.velocity.v',
         'w': 'system.full_state.velocity.w',
@@ -89,7 +95,6 @@ class Simulation:
         'q': 'system.full_state.angular_vel.q',
         'r': 'system.full_state.angular_vel.r'
     }
-
     def __init__(self, aircraft, system, environment, controls, dt=0.01,
                  save_vars=None):
         """
