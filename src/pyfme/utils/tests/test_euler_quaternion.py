@@ -10,9 +10,9 @@ import numpy as np
 from numpy.testing import (assert_array_almost_equal)
 
 
-from pyfme.utils.change_euler_quaternion import (quatern2euler, euler2quatern,
-                                                 check_unitnorm,
-                                                 vel_quaternion)
+from pyfme.utils.quaternions import (quatern2euler, euler2quatern,
+                                     check_unitnorm,
+                                     vel_quaternion)
 
 
 def test_quatern2euler():
